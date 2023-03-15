@@ -24,10 +24,9 @@ price = float(price_tag.getText().replace(",", ".").split("€")[0])
 print(price)
 # print(type(price))
 
-price_wanted = float(input("What price do you want to get? In this format, please: 12.85.\n"))
+price_wanted = float(input("What price do you want to get? In this format, please: 12.85.\n> "))
 
 if price_wanted >= price:
-    print("send email")
     MY_EMAIL = os.environ["MY_EMAIL"]
     GMAIL_SERVER = "smtp.gmail.com"
     MY_PASSWORD = os.environ["MY_PASSWORD"]
@@ -39,4 +38,4 @@ if price_wanted >= price:
                             to_addrs=EMAIL_TEST,
                             msg=f"Subject: It's time to pay!\n\n"
                                 f"The price for the item you wanted is equal to or below {price_wanted} €."
-                                f"Check it now: {URL}")
+                                f"Check it now: {URL}".encode('utf-8'))
