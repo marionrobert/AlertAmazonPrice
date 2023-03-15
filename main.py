@@ -15,4 +15,8 @@ web_data = response.content
 
 # if "bs4.FeatureNotFound: Couldn't find a tree builder with the features you requested: html-parser" --> use lxml
 soup = BeautifulSoup(web_data, "lxml")
-print(soup.prettify())
+# print(soup.prettify())
+
+price_tag = soup.select_one("span.a-offscreen")
+price = float(price_tag.getText().replace("€", "").replace(",", "."))
+# print(type(price))
