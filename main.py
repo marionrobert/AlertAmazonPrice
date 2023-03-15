@@ -1,6 +1,7 @@
 import os
 import requests
 from bs4 import BeautifulSoup
+import lxml
 
 URL ="https://www.amazon.fr/dp/B09Z2YLNKM/ref=twister_B08C5KHS9V?_encoding=UTF8&th=1"
 amazon_headers = {
@@ -11,4 +12,7 @@ amazon_headers = {
 response = requests.get(URL, headers=amazon_headers)
 # print(response.status_code)
 web_data = response.content
-print(web_data)
+
+# if "bs4.FeatureNotFound: Couldn't find a tree builder with the features you requested: html-parser" --> use lxml
+soup = BeautifulSoup(web_data, "lxml")
+print(soup.prettify())
